@@ -799,6 +799,10 @@ impl BuildConfig {
                         }
                     },
                     CargoOutput::Artifact( artifact ) => {
+                        if artifact.target.kind.contains(&"cdylib".to_owned()) {
+                            continue;
+                        }
+
                         for filename in &artifact.filenames {
                             debug!( "Built artifact: {}", filename );
                         }
